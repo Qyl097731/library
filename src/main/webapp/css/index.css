@@ -1,0 +1,277 @@
+@charset "UTF-8";
+
+input{
+    outline: none;
+}
+a{
+    outline: none;
+}
+a:link,a:visited{
+    color: mediumblue;
+}
+a:hover{
+    color: red;
+}
+.clearfix:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.header {
+    margin-left: 15%;
+    height: 109px;
+}
+
+.wrap {
+    /*设置透明背景大小和位置*/
+    height: 410px;
+    width: 1200px;
+    margin: 0 auto;
+    color: #333;
+    font-family: "Microsoft yahei";
+}
+
+.wrap .navigation {
+    width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.wrap .navigation table {
+    width: 1200px;
+    height: 60px;
+}
+
+.wrap .navigation a {
+    text-decoration: none;
+}
+
+.wrap .down {
+    width: 1200px;
+    height: 370px;
+    margin: 0 auto;
+
+}
+
+.wrap .down .left {
+    width: 266px;
+    height: 370px;
+    background: #fff;
+    float: left;
+}
+
+.wrap .down .left td {
+    width: 100%;
+}
+
+.wrap .down .right {
+    min-height: 150px;
+    width: 932px;
+    height: 370px;
+    float: right;
+    color: white;
+    background-image: url("/img/search.png");
+    background-repeat: no-repeat;
+    background-size: 932px 370px;
+}
+
+
+.introduction {
+    /*设置透明背景大小和位置*/
+    text-align: center;
+    height: 70px;
+    width: 1200px;
+    background: rgba(250, 250, 210, 0.7);
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.title {
+    margin-left: 30px;
+    padding: 15px 0;
+}
+
+.search {
+    margin-left: 20px;
+    height: 60px;
+    font-size: 0;
+    clear: both;
+    position: relative;
+    z-index: 5;
+    padding: 0;
+    display: block;
+}
+
+.select {
+    border: none !important;
+    border: 0;
+    height: 62px;
+    line-height: 60px;
+    cursor: pointer;
+    position: relative;
+    width: 160px;
+    border-right: 1px solid #cbcbcb;
+    font-size: 16px;
+    color: #4c4c4c;
+    display: inline-block;
+    float: left;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    padding: 0;
+}
+
+.part1-ss {
+    height: 60px;
+    line-height: 60px;
+    width: 500px;
+    border: none;
+    float: left;
+    outline: none;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+}
+
+.part1-btn {
+    height: 62px;
+    cursor: pointer;
+    color: #fff;
+    border: none !important;
+    width: 150px;
+    background: white url("/img/searchBtn.png") center no-repeat;
+    background-size: 150px 60px;
+    float: left;
+    display: inline-block;
+}
+
+.tab1-link_p {
+    font-size: 18px;
+    margin-top: 50px;
+    margin-left:20px;
+    color: white;
+    width: 817px;
+    height: 80px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.title {
+    width: 720px;
+    height: 65px;
+    font-size: 26px;
+    padding: 15px 0;
+}
+
+
+.footer {
+    text-align: center;
+    background: #63065f;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height:100px;
+    color: white;
+}
+
+
+
+.statue{
+    font-size: 18px;
+    margin-right: 150px;
+    margin-top:35px;
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    width: 160px;
+    height:30px;
+    overflow: hidden;
+}
+
+.statue button{
+    width: 80px;
+    height:32px;
+    border: none;
+    background: #63065f;
+    color: white;
+}
+.statue a{
+    text-decoration:none;
+    width: 80px;
+    height:32px;
+}
+
+
+.body{
+    height: 800px;
+    width: 1600px;
+}
+
+.body .content{
+    height: 155px;
+    width: 1200px;
+    float: right;
+    text-align: center;
+}
+
+.body .result{
+    height: 645px;
+    width: 1200px;
+    float: right;
+    text-align: center;
+}
+
+
+.body .authority{
+    width: 370px;
+    height: 800px;
+    float: left;
+    font-size: 16px;
+    color: black;
+    border-right:1px solid black;
+}
+
+.body .authority span{
+    display: block;
+    width: 100%;
+    height: 30px;
+    margin-left: 50px;
+}
+.body .authority span ul{
+    list-style: none;
+}
+
+.body .authority ul li{
+    list-style: none;
+}
+
+.body .authority ul li a{
+    color: black;
+    text-decoration: none;
+}
+
+
+.body .submit{
+    border: 0;
+    outline: 0;
+    background: #63065f;
+    color: white;
+}
+
+.body .result table {
+    margin: 30px auto;
+}
+
+
+.blank{
+    height: 170px;
+}

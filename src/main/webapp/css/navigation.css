@@ -1,0 +1,8 @@
+@charset "UTF-8";
+#clock{
+	text-align:right;
+}
+
+.navigation_link a:link{
+	color:black;
+}

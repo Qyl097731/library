@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qyl.dao.ManagerDao">
+    <!--    自定义返回的类型-->
+    <resultMap id="managerMap" type="com.qyl.bean.Manager">
+        <id property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="name" column="name"/>
+        <result property="tel" column="tel"/>
+    </resultMap>
+
+<!--    private String username;-->
+<!--    private String password;-->
+<!--    private String name;-->
+    <!--    void saveManager(Reader reader);-->
+    <insert id="insertManager"  parameterType="com.qyl.bean.Manager">
+        insert into tb_manager(username,password,name,tel)
+        values
+            (#{username},#{password},#{name},#{tel})
+    </insert>
+
+
+    <select id="getManagerByUsername" resultMap="managerMap">
+        select * from tb_manager where username=#{username}
+    </select>
+
+
+    <select id="fuzzyQueryAllManagers" resultMap="managerMap">
+        select * from  tb_manager as m
+        <where>
+            <if test="tel!=null and !tel.equals(' ')">
+                m.tel like CONCAT('%',#{tel},'%')
+            </if>
+            <if test="name != null and !name.equals(' ')">
+                and m.name like CONCAT ('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updateManager">
+        update tb_manager as m set
+                m.name = #{name},
+                m.password = #{password},
+                m.tel = #{tel}
+        where m.username = #{username}
+    </update>
+
+
+    <delete id="deleteManagerByUsername" parameterType="java.lang.String">
+        delete from tb_manager where username = #{username}
+    </delete>
+
+</mapper>

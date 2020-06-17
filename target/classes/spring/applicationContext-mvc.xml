@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:mcc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--  只扫描控制器 关闭默认的规则  -->
+    <context:component-scan base-package="com.qyl" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--    配置文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="#{1024*1024*20}"/>
+    </bean>
+    <!--    扫静态资源-->
+    <mvc:default-servlet-handler/>
+    <!--    扫动态-->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--    国际化-->
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="locale"/>
+        <property name="cacheSeconds" value="0"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <!--    &lt;!&ndash; 配置事务管理器 &ndash;&gt;-->
+    <!--    &lt;!&ndash; 配置数据源 &ndash;&gt;-->
+    <!--    <bean id="dataSource"-->
+    <!--          class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+    <!--        <property name="driverClassName">-->
+    <!--            <value>com.mysql.jdbc.Driver</value>-->
+    <!--        </property>-->
+    <!--        <property name="url">-->
+    <!--            <value>jdbc:mysql://localhost:3306/usermanage-->
+    <!--            </value>-->
+    <!--        </property>-->
+    <!--        <property name="username">-->
+    <!--            <value>root</value>-->
+    <!--        </property>-->
+    <!--        <property name="password">-->
+    <!--            <value></value>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+    <!--    hibernate -->
+    <!--    &lt;!&ndash; 定义Hibernate的sessionFactory &ndash;&gt;-->
+    <!--    <bean id="sessionFactory"-->
+    <!--          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">-->
+    <!--        <property name="dataSource">-->
+    <!--            <ref bean="dataSource"/>-->
+    <!--        </property>-->
+    <!--        <property name="hibernateProperties">-->
+    <!--            <props>-->
+    <!--                &lt;!&ndash; 数据库连接方言 &ndash;&gt;-->
+    <!--                <prop key="dialect">org.hibernate.dialect.SQLServerDialect</prop>-->
+    <!--                &lt;!&ndash; 在控制台输出SQL语句 &ndash;&gt;-->
+    <!--                <prop key="hibernate.show_sql">true</prop>-->
+    <!--                &lt;!&ndash; 格式化控制台输出的SQL语句 &ndash;&gt;-->
+    <!--                <prop key="hibernate.format_sql">true</prop>-->
+    <!--            </props>-->
+    <!--        </property>-->
+
+    <!--        &lt;!&ndash;Hibernate映射文件 &ndash;&gt;-->
+    <!--        <property name="mappingResources">-->
+    <!--            <list>-->
+    <!--                <value>Book.hbm.xml</value>-->
+    <!--            </list>-->
+    <!--        </property>-->
+
+    <!--    </bean>-->
+    <!-- 注入SessionFactory -->
+    <!--    <bean id="bookDAO" class="com.qyl.dao.BookDAO">-->
+    <!--        <property name="sessionFactory">-->
+    <!--            <ref bean="sessionFactory"/>-->
+    <!--        </property>-->
+    <!--    </bean>-->
+
+
+</beans>

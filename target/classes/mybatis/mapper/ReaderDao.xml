@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qyl.dao.ReaderDao">
+    <!--    自定义返回的类型-->
+    <resultMap id="readerMap" type="com.qyl.bean.Reader">
+        <id property="username" column="username"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="tel" column="tel"/>
+        <result property="ifViolate" column="ifViolate"/>
+    </resultMap>
+
+    <insert id="insertReader"  parameterType="com.qyl.bean.Reader">
+        insert into tb_reader(username,name,password,tel,ifViolate)
+        values
+            (#{username},#{name},#{password},#{tel},#{ifViolate})
+    </insert>
+
+    <select id="getReaderByUsername" resultMap="readerMap">
+        select * from tb_reader  where username=#{username}
+    </select>
+
+    <!-- List<Reader> fuzzyQueryAllReader( @Param("name") String name,
+                                   @Param("tel") String tel,
+                                  @Param("ifViolate") Integer ifViolate)-->
+    <select id="fuzzyQueryAllReaders" resultMap="readerMap">
+        select * from tb_reader as r
+        <where>
+            <if test="name!=null and !name.equals(' ')">
+                r.name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="tel != null and !tel.equals(' ')">
+                and r.tel like CONCAT ('%',#{tel},'%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updateReader">
+        update tb_reader as r set
+                r.name = #{name},
+                r.password = #{password},
+                r.tel = #{tel},
+                r.ifViolate = #{ifViolate}
+        where r.username = #{username}
+    </update>
+
+    <!--       void insertReaderBatch(List<Reader> readers);-->
+    <insert id="insertBooksBatch">
+        insert into tb_reader(username,name,password,tel,ifViolate)
+        values
+        <foreach collection="list" separator="," item="item">
+            (#{item.username},#{item.name},#{item.password},#{item.tel},#{item.ifViolate})
+        </foreach>
+    </insert>
+
+
+    <delete id="deleteReaderByUsername" parameterType="java.lang.String">
+        delete from tb_reader where username = #{username}
+    </delete>
+
+</mapper>
