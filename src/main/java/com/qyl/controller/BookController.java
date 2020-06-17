@@ -138,7 +138,7 @@ public class BookController {
         String username = session.getAttribute("username").toString();
         Date date = new Date();
         Integer id = book.getId();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Borrow borrow = new Borrow(id,username,formatter.format(date),"");
         borrowService.insertBorrowLog(borrow);
         return "redirect:fuzzyQueryAllBooks?path=searchPage";
@@ -150,7 +150,7 @@ public class BookController {
         String username = session.getAttribute("username").toString();
         Date date = new Date();
         Integer id = book.getId();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Borrow borrow = new Borrow(id,username,"",formatter.format(date));
         borrowService.insertBorrowLog(borrow);
         return "returnBook";
