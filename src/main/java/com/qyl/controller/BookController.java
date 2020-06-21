@@ -68,29 +68,30 @@ public class BookController {
         model.addAttribute("bookTypes",bookTypes);
         return "updateBook";
     }
+
     //    public List<Book> fuzzyQueryAllBooks(String name);
     @RequestMapping("/fuzzyQueryAllBooks")
     public String fuzzyQueryAllBooks(
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, String bookName, String bookEncrypt,
-            String pubName, String author,  @RequestParam(value = "typeName", defaultValue = "-1",required = false) String typeName,String path ,Model model) {
-        List<Book> books ;
-        if(path==null){
+            String pubName, String author, @RequestParam(value = "typeName", defaultValue = "-1", required = false) String typeName, String path, Model model) {
+        List<Book> books;
+        PageHelper.startPage(pageNum, 8);
+        if (path == null) {
             path = "bookList";
         }
-        if(typeName.equals("-1")){
+        if (typeName.equals("-1")) {
             books = bookService.fuzzyQueryAllBooks(bookName, bookEncrypt,
                     pubName, author, null);
-            model.addAttribute("typeName","-1");
-        }else{
+            model.addAttribute("typeName", "-1");
+        } else {
             books = bookService.fuzzyQueryAllBooks(bookName, bookEncrypt,
                     pubName, author, typeName);
-            model.addAttribute("typeName",typeName);
+            model.addAttribute("typeName", typeName);
         }
         List<BookType> bookTypes = bookTypeService.fuzzyQueryAllBookTypes(" ");
-        PageHelper.startPage(pageNum, 10);
         PageInfo<Book> info = new PageInfo<Book>(books, 5);
         int[] nums = info.getNavigatepageNums();
-        model.addAttribute("bookTypes",bookTypes);
+        model.addAttribute("bookTypes", bookTypes);
         model.addAttribute("nums", nums);
         model.addAttribute("info", info);
         return path;
@@ -138,7 +139,7 @@ public class BookController {
         String username = session.getAttribute("username").toString();
         Date date = new Date();
         Integer id = book.getId();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd   HH:mm:ss");
         Borrow borrow = new Borrow(id,username,formatter.format(date),"");
         borrowService.insertBorrowLog(borrow);
         return "redirect:fuzzyQueryAllBooks?path=searchPage";
@@ -172,7 +173,7 @@ public class BookController {
     @RequestMapping("/fuzzyQueryAllBorrowLog")
     public String fuzzyQueryAllBorrowLog(
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, String username, Integer bookId,Model model) {
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, 8);
         List<Borrow> borrows = borrowService.fuzzyQueryAllBorrowLog(username, bookId);
         PageInfo<Borrow> info = new PageInfo<Borrow>(borrows, 5);
         int[] nums = info.getNavigatepageNums();

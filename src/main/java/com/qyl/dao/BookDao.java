@@ -32,11 +32,3 @@ public interface BookDao {
                                      @Param("pubName") String pubName, @Param("author") String author,
                                      @Param("typeName") String typeName);
 }
-//
-//    private Integer id;
-//    private String bookName;
-//    private Integer stock;              //存量
-//    private String author;
-//    private String bookEncrypt;            //图书编码
-//    private String pubName;
-//    private Integer typeId;

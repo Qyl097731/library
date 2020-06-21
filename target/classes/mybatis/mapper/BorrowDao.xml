@@ -18,7 +18,7 @@
 
 
     <select id="getLogByUsername" resultMap="borrowMap">
-        select * from tb_borrow where username=#{username}
+        select * from tb_borrow where username=#{username} order by id desc
     </select>
 
     <select id="fuzzyQueryAllBorrowLog" resultMap="borrowMap">
@@ -31,5 +31,6 @@
                 and b.username like CONCAT ('%',#{username},'%')
             </if>
         </where>
+        order by id desc
     </select>
 </mapper>

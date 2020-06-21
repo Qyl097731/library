@@ -59,7 +59,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -86,7 +86,7 @@
         </ul>
     </div>
     <div class="body result">
-        <table style=" border-collapse: collapse; text-align: center ;" border="1px" ; cellspacing="20px"
+        <table style="border-collapse: collapse; text-align: center ;" border="1px" ; cellspacing="20px"
                cellpadding="10px">
             <c:forEach items="${info.list}" var="item" varStatus="vs">
                 <tr>

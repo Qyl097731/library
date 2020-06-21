@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="/css/infodisplay.css">
+    <link rel="stylesheet" type="text/css" href="/css/infoDisplay.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
     <script>
@@ -25,6 +25,30 @@
                 location.href = "/jsp/login.jsp";
             })
         })
+        function check() {
+            if( checkPhone() && checkUsername()){
+                return true;
+            }
+            return false;
+        }
+        function checkPhone(){
+            var reg=/^1[3456789]\d{9}$/;
+            var phone=document.getElementById("tel").value;
+            var span=document.getElementById("telSpan");
+            if(phone==""||phone==null){
+                span.innerHTML="手机不能为空";
+                span.style.color="red";
+                return false;
+            }else if(reg.test(phone)){
+                span.innerHTML="手机通过";
+                span.style.color="green";
+                return true;
+            }else{
+                span.innerHTML="手机格式不符";
+                span.style.color="red";
+                return false;
+            }
+        }
         function checkUsername() {
             $("#usernameExist").text("");
             var username = $("#username").val();
@@ -32,33 +56,34 @@
             const reg = /^\d\d{6}\d$/;
             if (username == "" || username == null) {
                 $("#usernameExist").text("请输入账号");
-                $("#usernameExist").css("color","red");
-                $("#username").focus();
+                $("#usernameExist").css("color", "red");
+                return false;
             } else if (!reg.test(username)) {
                 $("#usernameExist").text("账号非法");
-                $("#usernameExist").css("color","red");
-                $("#username").focus();
+                $("#usernameExist").css("color", "red");
+                return false;
             } else {
                 $.ajax({
-                    url:"checkUsername",
-                    type:"POST",
-                    data:{"username":username,"authority":authority},
-                    success:function (data) {
-                        if(data.username == username){
+                    url: "checkUsername",
+                    type: "POST",
+                    data: {"username": username, "authority": authority},
+                    success: function (data) {
+                        if (data.username == username) {
                             $("#usernameExist").text("账号已存在");
-                            $("#usernameExist").css("color","red");
-                            $("#username").focus();
-                        }else {
+                            $("#usernameExist").css("color", "red");
+                            return false;
+                        } else {
                             $("#usernameExist").text("账号可入库");
-                            $("#usernameExist").css("color","green");
+                            $("#usernameExist").css("color", "green");
+                            return true;
                         }
                     }
                 })
             }
-
         }
+
         function loadSpan() {
-            $("#delViolate").css("display","none");
+            $("#delViolate").css("display", "none");
             if (${authority==1}) {
                 $("#updateManager").css("display", "none");
                 $("#showManager").css("display", "none");
@@ -89,7 +114,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -115,22 +140,23 @@
             <span id="returnIndex"><li><a href="/jsp/index.jsp">返回首页</a></li></span>
         </ul>
     </div>
-    <div class="body result">
-        <form action="${reader.username!=null?'updateReader':'insertReader'}" method="post">
-            username:
-            <c:if test="${empty reader.username}">
-                <input type="text" name="username" id="username" onblur="checkUsername()"/>
-            </c:if>
-            <c:if test="${not empty reader.username}">
-                <input type="hidden" name="username" id="username" value="${reader.username}"/>
-                ${reader.username}
-            </c:if>
-            <span id="usernameExist"></span><br>
+    <div class="body_result">
+        <form action="${reader.username!=null?'updateReader':'insertReader'}" method="post" onsubmit="return check()">
             <input type="hidden" name="pageNum" id="pageNum" value="${pageNum}"/>
-            name:<input type="text" name="name" id="name" value="${reader.name}"/>            <br>
-            password:<input type="text" name="password" id="password" value="${reader.password}"/>            <br>
-            tel:<input type="text" name="tel" id="tel" value="${reader.tel}"/>            <br>
-            <input type="submit" name="submit" class="submit">
+            <dl>
+                <dt>个人资料</dt>
+                <dd>账号：<c:if test="${empty reader.username}"><input type="text" name="username" id="username" onblur="checkUsername()"/></c:if>
+                    <c:if test="${not empty reader.username}">
+                    <input type="hidden" name="username" id="username" value="${reader.username}"/>${reader.username}
+                    </c:if>
+                    <span id="usernameExist"></span><br>
+                </dd>
+                <dd>名字：<input type="text" name="name" id="name" value="${reader.name}"/></dd>
+                <dd>密码：<input type="text" name="password" id="password" value="${reader.password}"/></dd>
+                <dd>电话：<input type="text" name="tel" id="tel" value="${reader.tel}" onblur="checkPhone()"/><span id="telSpan"></span><br></dd>
+
+                <input type="submit" name="submit" class="submit" style="margin-left: 70px;">
+            </dl>
         </form>
     </div>
 </div>

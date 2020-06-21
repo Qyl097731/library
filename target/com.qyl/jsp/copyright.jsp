@@ -1,7 +1,13 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" isErrorPage="false" %>
 <html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 <script>
     //获取当前日期
+
+    $(function () {
+        time();
+    })
+
     function time() {
         const now = new Date();// 创建Date对象
         const year = now.getFullYear();// 获取年份
@@ -20,7 +26,7 @@
 </script>
 
 <body>
-<p>&nbsp;咨询邮件:553579048@qq.com&nbsp;All Copyright &copy; 2020 南京晓庄学院</p>
+<p>&nbsp;咨询邮箱:553579048@qq.com&nbsp;All Copyright &copy; 2020 南京晓庄学院</p>
 <div id="clock"></div>
 </body>
 </html>

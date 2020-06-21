@@ -58,7 +58,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -84,16 +84,13 @@
             <span id="returnIndex"><li><a href="/jsp/index.jsp">返回首页</a></li></span>
         </ul>
     </div>
-    <div class="body result">
-        <sapn>账号:${user.username}</sapn>
-        <br>
-        <sapn>名字:${user.name}</sapn>
-        <br>
-        <sapn>密码:${user.password}</sapn>
-        <br>
-        <span>电话:${user.tel}</span>
-        <br>
-    </div>
+        <dl>
+            <dt>个人资料</dt>
+            <dd>账号：${user.username}</dd>
+            <dd>名字：${user.name}</dd>
+            <dd>密码：${user.password}</dd>
+            <dd>电话：${user.tel}</dd>
+        </dl>
 </div>
 
 <div class="footer">

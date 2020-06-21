@@ -88,7 +88,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">

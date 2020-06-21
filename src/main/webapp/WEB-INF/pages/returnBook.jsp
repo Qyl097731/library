@@ -28,26 +28,25 @@
             $(".submit:eq(0)").click(function () {
                 var id = $(".bookId").val();
                 $.ajax({
-                    url:"getBookInfo",
-                    data:{"id":id},
-                    type:"POST",
-                    success:function (data) {
-                        if(data==null || data==""){
+                    url: "getBookInfo",
+                    data: {"id": id},
+                    type: "POST",
+                    success: function (data) {
+                        if (data == null || data == "") {
                             $(".wrongInfo").text("没有这本书！");
-                            $(".wrongInfo").css("color","red");
+                            $(".wrongInfo").css("color", "red");
                             $(".bookInfo").css("display", "none");
-                        }
-                        else if(data.stock==1){
-                           $(".wrongInfo").text("您未借过这本书噢！");
-                            $(".wrongInfo").css("color","red");
+                        } else if (data.stock == 1) {
+                            $(".wrongInfo").text("您未借过这本书噢！");
+                            $(".wrongInfo").css("color", "red");
                             $(".bookInfo").css("display", "none");
-                        }else {
-                            $(".id:eq(0)").text("id:" + data.id);
-                            $(".bookName").text("bookName:" + data.bookName);
-                            $(".author").text("author:" + data.author);
-                            $(".bookEncrypt").text("bookEncrypt:" + data.bookEncrypt);
-                            $(".pubName").text("pubName:" + data.pubName);
-                            $(".typeName").text("typeName:" + data.typeName);
+                        } else {
+                            $(".id:eq(0)").text("序号:" + data.id);
+                            $(".bookName").text("书名:" + data.bookName);
+                            $(".author").text("作者:" + data.author);
+                            $(".bookEncrypt").text("书码:" + data.bookEncrypt);
+                            $(".pubName").text("出版商:" + data.pubName);
+                            $(".typeName").text("书类:" + data.typeName);
                             $("#formId").prop("value", data.id);
                             $("#bookName").prop("value", data.bookName);
                             $("#author").prop("value", data.author)
@@ -55,6 +54,7 @@
                             $("#pubName").prop("value", data.pubName)
                             $("#stock").prop("value", 1);
                             $("#typeName").prop("value", data.typeName);
+                            $(".line").show();
                             $(".bookInfo").css("display", "block");
                         }
                         $(".body .content").css("display", "block");
@@ -63,21 +63,31 @@
                 return false;
             })
             $(".submit:eq(1)").click(function () {
-                var id=$("#formId").val();
-                var bookName=$("#bookName").val();
-                var author=$("#author").val();
-                var bookEncrypt=$("#bookEncrypt").val();
-                var stock=$("#stock").val();
-                var pubName=$("#pubName").val();
-                var typeName=$("#typeName").val();
+                var id = $("#formId").val();
+                var bookName = $("#bookName").val();
+                var author = $("#author").val();
+                var bookEncrypt = $("#bookEncrypt").val();
+                var stock = $("#stock").val();
+                var pubName = $("#pubName").val();
+                var typeName = $("#typeName").val();
                 $.ajax({
-                    url:"returnBook",
-                    data:{"id":id,"bookName":bookName,"author":author,"stock":stock,"bookEncrypt":bookEncrypt,"pubName":pubName,"typeName":typeName},
-                    type:"POST",
-                    success:function () {
-                        alert(">>>>>>>>>>>还书中>>>>>>>>>>>>>>>>>>>>>>");
-                        $(".body .content").css("display","none");
+                    url: "returnBook",
+                    data: {
+                        "id": id,
+                        "bookName": bookName,
+                        "author": author,
+                        "stock": stock,
+                        "bookEncrypt": bookEncrypt,
+                        "pubName": pubName,
+                        "typeName": typeName
+                    },
+                    type: "POST",
+                    success: function () {
+
+                        $(".body .content").css("display", "none");
+                        $(".line").hide();
                         alert("还书成功");
+
                     }
                 })
                 return false;
@@ -86,7 +96,7 @@
 
 
         function loadSpan() {
-            $("#delViolate").css("display","none");
+            $("#delViolate").css("display", "none");
             if (${authority==1}) {
                 $("#updateManager").css("display", "none");
                 $("#showManager").css("display", "none");
@@ -117,7 +127,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -144,34 +154,35 @@
         </ul>
     </div>
     <div class="body result">
-        <div class="inInput">
+        <div class="inInput" style="font-size: 20px;letter-spacing: 1px;line-height: 40px;margin: 10px 20px;">
             要归还的书籍id :
             <form class="searchFrom" action="">
                 <input type="text" name="bookId" class="bookId">
-                <input type="submit" name="submit" class="submit">
+                <input type="submit" name="submit" class="submit" style="margin-left: 505px;height: 30px;">
             </form>
         </div>
+        <div style="border-top: dashed 1px #666666;width:400px ;font-size: 25px;line-height: 32px;margin-left:400px " class="line" hidden>图书信息</div>
+        <div class=" body content" style="margin: auto;float:none;display: none ;font-size: 20px;line-height: 32px;">
+                <form action="returnBook" method="post">
+                    <div class="wrongInfo"></div>
+                    <div class="bookInfo" style="display: none">
+                        <span class="id"></span><br>
+                        <span class="bookName"></span><br>
+                        <span class="author"></span><br>
+                        <span class="bookEncrypt"></span><br>
+                        <span class="pubName"></span><br>
+                        <span class="typeName" ></span><br>
+                        <input type="hidden" name="id" id="formId" value=""/>
+                        <input type="hidden" name="bookName" id="bookName" value=""/>
+                        <input type="hidden" name="author" id="author" value=""/>
+                        <input type="hidden" name="bookEncrypt" id="bookEncrypt" value=""/>
+                        <input type="hidden" name="pubName" id="pubName" value=""/>
+                        <input type="hidden" name="stock" id="stock" value=""/>
+                        <input type="hidden" name="typeName" id="typeName" value=""/>
+                        <input type="submit" value="确定" class="submit"style="margin-left: 525px;height: 30px;background:darkorange">
 
-        <div class="body content" style="margin: auto;float:none;display: none">
-            <form action="returnBook" method="post">
-                <div class="wrongInfo"></div>
-                <div class="bookInfo" style="display: none">
-                    <span class="id"></span>
-                    <span class="bookName"></span>
-                    <span class="author"></span>
-                    <span class="bookEncrypt"></span>
-                    <span class="pubName"></span>
-                    <span class="typeName"></span>
-                    <input type="hidden" name="id" id="formId" value=""/>
-                    <input type="hidden" name="bookName" id="bookName" value=""/>
-                    <input type="hidden" name="author" id="author" value=""/>
-                    <input type="hidden" name="bookEncrypt" id="bookEncrypt" value=""/>
-                    <input type="hidden" name="pubName" id="pubName" value=""/>
-                    <input type="hidden" name="stock" id="stock" value=""/>
-                    <input type="hidden" name="typeName" id="typeName" value=""/>
-                    <input type="submit" value="提交" class="submit" >
-                </div>
-            </form>
+                    </div>
+                </form>
         </div>
     </div>
 </div>

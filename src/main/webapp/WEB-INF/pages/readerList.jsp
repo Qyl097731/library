@@ -53,19 +53,20 @@
     </script>
 </head>
 <body>
-<div class="infodisplay_banner">
-    <%@include file="/jsp/banner.jsp" %>
-</div>
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
         <button class="login">登录</button>
     </c:if>
 </div>
+<div class="infodisplay_banner">
+    <%@include file="/jsp/banner.jsp" %>
+</div>
+
 <div class="body">
     <div class="body authority">
         <ul>
@@ -86,8 +87,7 @@
         </ul>
     </div>
     <div class="body result">
-            <table style="margin: 5% auto; border-collapse: collapse; text-align: center ;" border="1px" ;
-                   cellspacing="20px"
+            <table style="width:800px;border-collapse: collapse; text-align: center ;" border="1px" ; cellspacing="20px";padding="16px"
                    cellpadding="10px">
                 <tr>
                     <th>序号</th>

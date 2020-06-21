@@ -39,10 +39,8 @@
                 const reg = /^\d\d{6}\d$/;
                 if (username == "" || username == null) {
                     $(".usernameError").text("请输入账号");
-                    $("#username").focus();
                 } else if (!reg.test(username)) {
                     $(".usernameError").text("账号非法");
-                    $("#username").focus();
                 } else {
                     $(".usernameError").text("");
                 }
@@ -51,7 +49,6 @@
                 const password = this.value;
                 if (password == "" || password == null) {
                     $(".passwordError").text("请输入密码");
-                    $("#password").focus();
                     return;
                 } else {
                     $(".passwordError").text("");
@@ -101,36 +98,36 @@
     <div class="middle">
         <div class="loginTable">
             <table width='500' height='280' border='0' align="center" cellspacing="0">
-                <form action="checkUser" method="post">
+                <form action="checkUser" onsubmit="return checkCode()" method="post">
                     <tbody>
                     <tr>
                         <td class="login_first" colspan="3"><fmt:message key="ToolTip"></fmt:message></td>
                     </tr>
                     <tr>
-                        <td class="login_right">身份：</td>
+                        <td class="login_right"><fmt:message key="identify"></fmt:message>：</td>
                         <td><select name="userType" class="login_left">
-                            <option value="-1" selected="selected">管理员</option>
-                            <option value="1">普通成员</option>
+                            <option value="-1" selected="selected"><fmt:message key="admin"></fmt:message></option>
+                            <option value="1"><fmt:message key="reader"></fmt:message></option>
                         </select>
                             <p style="color: red;font-size:2px" name="wrongInfo">${param.wrongInfo}</p></td>
                     </tr>
 
                     <tr>
-                        <td class="login_right">账号：</td>
-                        <td><input type="text" name="username" id="username" placeholder="学号" class="login_left">
+                        <td class="login_right"><fmt:message key="username"></fmt:message>：</td>
+                        <td><input type="text" name="username" id="username" placeholder="<fmt:message key="usernameTip"></fmt:message>" class="login_left">
                             <span class="usernameError" style="color: red"></span>
                         </td>
                     </tr>
 
                     <tr>
-                        <td class="login_right">密码：</td>
-                        <td><input type="password" name="password" id="password" placeholder="默认身份证后六位"
+                        <td class="login_right"><fmt:message key="password"></fmt:message>：</td>
+                        <td><input type="password" name="password" id="password" placeholder="<fmt:message key="passwordTip"></fmt:message>"
                                    class="login_left">
                             <span class="passwordError" style="color: red"></span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="login_right">验证码：</td>
+                        <td class="login_right"><fmt:message key="verificationCode"></fmt:message>：</td>
                         <td><input type="text" id="code" onblur="checkCode()"/>&nbsp;&nbsp;&nbsp;
                             <span id="codeSpan" onclick="createCode()"></span>
                             <span id="codeError"></span>

@@ -9,6 +9,7 @@
         <result property="bookEncrypt" column="bookEncrypt"/>
         <result property="pubName" column="pubName"/>
         <result property="typeName" column="typeName"/>
+        <result property="total" column="total"/>
         <result property="stock" column="stock"/>
         <result property="num" column="num"/>
         <result property="author" column="author"/>

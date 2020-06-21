@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="/css/infodisplay.css">
+    <link rel="stylesheet" type="text/css" href="/css/infoDisplay.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
     <script>
@@ -22,9 +22,8 @@
         })
         $(document).ready(function () {
             $(".login").click(function () {
-                location.href = "/jsp/login.jsp";
+                location.href = "../../jsp/login.jsp";
             })
-
         })
 
         function loadSpan() {
@@ -59,7 +58,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -85,51 +84,45 @@
             <span id="returnIndex"><li><a href="/jsp/index.jsp">返回首页</a></li></span>
         </ul>
     </div>
-    <div class="body result">
-        <div class="body content" style="margin: auto;float:none">
-            <form action="${book.id!=null?'updateBook':'saveBook'}">
-                <c:if test="${book.id!=null}">id:${book.id}</c:if>
-                <c:if test="${book.id==null}"/>
-                <input type="hidden" name="id" id="id" value="${book.id}"/>
-                <br>
-                <input type="hidden" name="pageNum" id="pageNum" value="${pageNum}"/>
-                <br>
-                书名:<input type="text" name="bookName" id="bookName" value="${book.bookName}"/>
-                <br>
 
+    <div class="body_result">
+        <form action="${book.id!=null?'updateBook':'saveBook'}">
+            <input type="hidden" name="id" id="id" value="${book.id}"/>
+            <input type="hidden" name="pageNum" id="pageNum" value="${pageNum}"/>
+            <c:if test="${book.id==null}">
+                <input type="hidden" name="stock" class="stock" value="${book.stock+1}"/>
+            </c:if>
+            <dl>
+                <dt>书本资料</dt>
                 <c:if test="${book.id!=null}">
-                    库藏:${book.stock}
-                    <input type="hidden" name="stock" id="stock" value="${book.stock}"/>
+                    <dd>书　号:${book.id}</dd>
                 </c:if>
-                <c:if test="${book.id==null}">
-                    <input type="hidden" name="stock" id="stock" value="${book.stock+1}"/>
+                <dd>书　名:<input type="text" name="bookName" id="bookName" value="${book.bookName}"/></dd>
+                <c:if test="${book.id!=null}">
+                    <dd>库　藏:${book.stock}
+                        <input type="hidden" name="stock" class="stock" value="${book.stock}"/></dd>
                 </c:if>
 
-                <br>
-                作者:<input type="text" name="author" id="author" value="${book.author}"/>
-                <br>
-                书码:<input type="text" name="bookEncrypt" id="bookEncrypt" value="${book.bookEncrypt}"/>
-                <br>
-                出版商:<input type="text" name="pubName" id="pubName" value="${book.pubName}"/>
-                <br>
-                书类:
-                <select name="typeName">
-                    <c:forEach items="${bookTypes}" var="bookType">
-                        <c:if test="${book.typeName==bookType.typeName}">
-                            <option value="${bookType.typeName}" selected="selected">${bookType.typeName}</option>
-                        </c:if>
-                        <c:if test="${book.typeName!=bookType.typeName}">
-                            <option value="${bookType.typeName}">${bookType.typeName}</option>
-                        </c:if>
-                    </c:forEach>
-                </select>
-                <br>
-                <input type="submit" value="提交">
-            </form>
-        </div>
+                <dd>作　者:<input type="text" name="author" id="author" value="${book.author}"/></dd>
+                <dd>书　码:<input type="text" name="bookEncrypt" id="bookEncrypt" value="${book.bookEncrypt}"/></dd>
+                <dd> 出版商:<input type="text" name="pubName" id="pubName" value="${book.pubName}"/></dd>
+                <dd>书　 类:
+                    <select name="typeName">
+                        <c:forEach items="${bookTypes}" var="bookType">
+                            <c:if test="${book.typeName==bookType.typeName}">
+                                <option value="${bookType.typeName}" selected="selected">${bookType.typeName}</option>
+                            </c:if>
+                            <c:if test="${book.typeName!=bookType.typeName}">
+                                <option value="${bookType.typeName}">${bookType.typeName}</option>
+                            </c:if>
+                        </c:forEach>
+                    </select>
+                </dd>
+                <input type="submit" value="提交" class="submit" style="margin-left: 70px;">
+            </dl>
+        </form>
     </div>
 </div>
-
 <div class="footer">
     <%@include file="/jsp/copyright.jsp" %>
 </div>

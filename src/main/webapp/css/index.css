@@ -1,7 +1,7 @@
 @charset "UTF-8";
-{
-padding:0px;
-margin:0px;
+*{    margin: 0 ;padding: 0}
+input{
+    font-size: 16px;
 }
 input{
     outline: none;
@@ -28,11 +28,12 @@ a:hover{
 
 .wrap {
     /*设置透明背景大小和位置*/
-    height: 410px;
+    height: 420px;
     width: 1200px;
     margin: 0 auto;
     color: #333;
     font-family: "Microsoft yahei";
+    letter-spacing:1px;
 }
 
 .wrap .navigation {
@@ -55,42 +56,48 @@ a:hover{
     height: 370px;
     margin: 0 auto;
 
+
 }
 
 .wrap .down .left {
     width: 266px;
-    height: 365px;
+    height: 369px;
     background: #fff;
     float: left;
 }
 
 .wrap .down .left td {
     width: 100%;
+    height:53px;
 }
 
 .wrap .down .right {
     min-height: 150px;
     width: 932px;
-    height: 370px;
+    height: 372px;
     float: right;
     color: white;
-    background-image: url("/img/search.png");
+    background-image: url("/img/search.png") ;
     background-repeat: no-repeat;
-    background-size: 932px 370px;
+    background-size: 932px 372px;
 }
 
 
 .introduction {
     /*设置透明背景大小和位置*/
-    text-align: center;
-    height: 70px;
-    width: 1200px;
+    height: 80px;
+    width: 1140px;
     background: rgba(250, 250, 210, 0.7);
     margin-bottom: 100px;
     margin-left: auto;
     margin-right: auto;
+    padding:25px;
+    line-height: 25px;
 }
+.introduction  p{
+    display:block;
 
+}
 
 .title {
     margin-left: 30px;
@@ -127,7 +134,7 @@ a:hover{
 }
 
 .part1-ss {
-    height: 60px;
+    height: 62px;
     line-height: 60px;
     width: 500px;
     border: none;
@@ -178,14 +185,15 @@ a:hover{
 .footer {
     text-align: center;
     background: #63065f;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
     width: 100%;
-    height:100px;
+    height:105px;
     color: white;
+
 }
 
+.footer p{
+    padding:20px;
+}
 
 
 .statue{
@@ -208,6 +216,7 @@ a:hover{
     color: white;
 }
 .statue a{
+    color: white;
     text-decoration:none;
     width: 80px;
     height:32px;
@@ -235,7 +244,7 @@ a:hover{
 
 
 .body .authority{
-    width: 370px;
+    width: 350px;
     height: 800px;
     float: left;
     font-size: 16px;
@@ -245,9 +254,11 @@ a:hover{
 
 .body .authority span{
     display: block;
-    width: 100%;
+    width: 200px;
     height: 30px;
-    margin-left: 50px;
+    padding: 20px;
+    margin-left: 90px;
+
 }
 .body .authority span ul{
     list-style: none;
@@ -255,26 +266,40 @@ a:hover{
 
 .body .authority ul li{
     list-style: none;
+    text-align: left;
 }
 
 .body .authority ul li a{
     color: black;
     text-decoration: none;
+    font-size: 20px;
+
 }
 
 
 .body .submit{
+    display: block;
+    width: 150px;
     border: 0;
     outline: 0;
     background: #63065f;
     color: white;
+    margin-top: 10px;
+    margin-left: 620px;
+    font-size: 16px
 }
 
 .body .result table {
     margin: 30px auto;
 }
 
+.body .result td{
+    padding: 16px;
+}
 
 .blank{
-    height: 170px;
+    height: 120px;
+}
+select{
+    font-size: 16px;
 }

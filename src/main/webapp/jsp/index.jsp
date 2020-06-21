@@ -101,14 +101,14 @@
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
-<body background="/img/bg.jpg">
+<body  style="background:url('/img/bg.jpg') no-repeat center;">
 <div class="header">
     <%@include file="banner.jsp" %>
 </div>
 <br>
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>　
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -152,8 +152,8 @@
                     </div>
                 </td>
                 <td class="wrap down right">
-                    <div style="display: block">
-                        <div class="title">纸本目录</div>
+                    <div style="margin-left: 40px"><br>
+                        <div class="title" style="font-size: 40px">纸本目录</div><br>
                         <div class="search">
                             <select class="select" style="outline: none">
                                 <option value="0" selected="selected">全部检索</option>
@@ -178,7 +178,7 @@
 <div style="height: 30px"></div>
 <div class="introduction">
     <p>
-        图书馆资源丰富，学科覆盖面较广，馆藏图书总量（含资料室）约120万册，
+        　　图书馆资源丰富，学科覆盖面较广，馆藏图书总量（含资料室）约120万册，
         其中部分古文献、近现代主要大报及清末以来各个时期的中小学课本收藏在
         同类学校中颇具特色和规模；拥有清末民初中小学教材书目数据库、古籍书
         目数据库、陶行知研究资料中心文献馆等特色馆藏。图书馆订有中文期刊19
@@ -186,6 +186,7 @@
         篇/种，国内外网络版学术资源数据库16个。
     </p>
 </div>
+<br>
 <div class="footer">
     <%@include file="copyright.jsp" %>
 </div>

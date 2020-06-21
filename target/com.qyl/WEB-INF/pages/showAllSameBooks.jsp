@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人信息</title>
-    <link rel="stylesheet" type="text/css" href="/css/infodisplay.css">
+    <link rel="stylesheet" type="text/css" href="/css/infoDisplay.css">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
     <script>
@@ -88,7 +88,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">

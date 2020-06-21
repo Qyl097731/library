@@ -64,13 +64,17 @@
     overflow: hidden;
     background: #cdcdcd;
     border-radius: 15px;
+    padding: 0;
+    border: none;
 }
 .auth-language button{
-    width: 81px;
+    outline: none;
+    width: 84px;
     height: 30px;
     border: none;
     background: #cdcdcd;
     color: black;
+    float:left
 }
 
 #code{

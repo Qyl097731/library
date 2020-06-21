@@ -25,7 +25,15 @@
                 location.href = "../../jsp/login.jsp";
             })
         })
-
+        function checkStock() {
+            if(${book.stock==0}){
+                alert("已出库，请别重复提交!")
+                return false;
+            }else{
+                alert("借书成功！")
+                return true;
+            }
+        }
         function loadSpan() {
             $("#delViolate").css("display","none");
             if (${authority==1}) {
@@ -58,7 +66,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;&nbsp;
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -84,8 +92,9 @@
             <span id="returnIndex"><li><a href="/jsp/index.jsp">返回首页</a></li></span>
         </ul>
     </div>
-    <div class="body result">
-        <form action="borrowBook" method="post">
+    <div class="body result" style="font-size: 20px;letter-spacing: 1px;line-height: 40px;
+    margin: 10px 20px;">
+        <form action="borrowBook" method="post" onsubmit="return checkStock()">
             序号:${book.id}<br>
             书名:${book.bookName}<br>
             库藏:${book.stock}<br>
@@ -100,7 +109,7 @@
             <input type="hidden" name="bookEncrypt" id="bookEncrypt" value="${book.bookEncrypt}"/>
             <input type="hidden" name="pubName" id="pubName" value="${book.pubName}"/>
             <input type="hidden" name="typeName" id="typeName" value="${book.typeName}">
-            <input type="submit" value="提交">
+            <input type="submit" value="提交" class="submit" style="margin-left: 525px;height: 30px;">
         </form>
     </div>
 </div>

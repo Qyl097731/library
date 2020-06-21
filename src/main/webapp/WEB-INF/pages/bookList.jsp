@@ -67,7 +67,7 @@
 
 <div class="statue">
     <c:if test="${not empty username}">
-        <a href="getMyInfo?path=manage" class="manager">${username}</a>&nbsp;,&nbsp;
+        <a href="getMyInfo?path=manage" class="manager">${username}</a>　
         <a href="logOut">退出</a>
     </c:if>
     <c:if test="${empty username}">
@@ -112,7 +112,7 @@
             <input type="submit" name="submit" value="查询图书信息" class="submit"/>
         </form>
         <div class="body result" style="margin: auto;float:none">
-            <table style=" border-collapse: collapse; text-align: center ;" border="1px" ; cellspacing="20px"
+            <table style="width:800px;border-collapse: collapse; text-align: center ;" border="1px" ; cellspacing="20px";padding="16px"
                    cellpadding="10px">
                 <tr>
                     <th>序号</th>
