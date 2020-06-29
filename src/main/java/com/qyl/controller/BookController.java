@@ -102,7 +102,7 @@ public class BookController {
             @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, String bookName, String bookEncrypt,
             String pubName, String author, String typeName ,Model model) {
         List<BookType> bookTypes = bookTypeService.fuzzyQueryAllBookTypes(" ");
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, 8);
         List<Book> books = bookService.accurateQueryAllBooks(bookName, bookEncrypt,
                 pubName, author, typeName);
         PageInfo<Book> info = new PageInfo<Book>(books, 8);

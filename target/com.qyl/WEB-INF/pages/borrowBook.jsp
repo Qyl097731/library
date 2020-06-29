@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
     <script>
+        window.history.go(1);
         $(function () {
             time();
             loadSpan();
