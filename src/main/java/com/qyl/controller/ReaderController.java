@@ -120,7 +120,12 @@ public class ReaderController {
                 if (username.equals(reader.getUsername()) && password.equals(reader.getPassword())) {
                     session.setAttribute("username",username);
                     session.setAttribute("authority",1);
-                    return "redirect:getMyInfo?path=manage";
+                    System.out.println(reader.getIfViolate());
+                    if(reader.getIfViolate()==1){
+                        request.setAttribute("msg","您有图书长期未还，将每日扣除￥0.1从您的饭卡");
+                    }
+                    request.getRequestDispatcher("getMyInfo?path=manage").forward(request, response);
+                    return null;
                 }else{
                     request.getRequestDispatcher("/jsp/login.jsp?wrongInfo=密码错误").forward(request, response);
                     return null;

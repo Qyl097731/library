@@ -19,6 +19,9 @@
         $(function () {
             time();
             loadSpan();
+            if(${not empty msg}){
+                alert('${msg}')
+            }
         })
         $(document).ready(function () {
             $(".login").click(function () {

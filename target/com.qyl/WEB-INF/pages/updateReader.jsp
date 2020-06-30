@@ -25,12 +25,7 @@
                 location.href = "/jsp/login.jsp";
             })
         })
-        function check() {
-            if( checkPhone() && checkUsername()){
-                return true;
-            }
-            return false;
-        }
+
         function checkPhone(){
             var reg=/^1[3456789]\d{9}$/;
             var phone=document.getElementById("tel").value;
@@ -63,25 +58,33 @@
                 $("#usernameExist").css("color", "red");
                 return false;
             } else {
+                var bol=false;
                 $.ajax({
                     url: "checkUsername",
                     type: "POST",
                     data: {"username": username, "authority": authority},
+                    async:false,
                     success: function (data) {
                         if (data.username == username) {
                             $("#usernameExist").text("账号已存在");
                             $("#usernameExist").css("color", "red");
-                            return false;
+                            bol= false;
                         } else {
                             $("#usernameExist").text("账号可入库");
                             $("#usernameExist").css("color", "green");
-                            return true;
+                            bol= true;
                         }
                     }
                 })
+                return bol;
             }
         }
-
+        function check() {
+            if( checkPhone() && checkUsername()  ){
+                return true;
+            }
+            return false;
+        }
         function loadSpan() {
             $("#delViolate").css("display", "none");
             if (${authority==1}) {
@@ -154,7 +157,7 @@
                 <dd>名字：<input type="text" name="name" id="name" value="${reader.name}"/></dd>
                 <dd>密码：<input type="text" name="password" id="password" value="${reader.password}"/></dd>
                 <dd>电话：<input type="text" name="tel" id="tel" value="${reader.tel}" onblur="checkPhone()"/><span id="telSpan"></span><br></dd>
-
+                <input type="text" name="ifViolate" id="ifViolate" value="${empty reader.ifViolate?0:reader.ifViolate}" hidden/>
                 <input type="submit" name="submit" class="submit" style="margin-left: 70px;">
             </dl>
         </form>

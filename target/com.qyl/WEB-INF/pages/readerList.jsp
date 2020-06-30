@@ -95,6 +95,7 @@
                     <th>姓名</th>
                     <th>密码</th>
                     <th>电话</th>
+                    <th>违规</th>
                     <c:if test="${empty null}">
                         <th>修改</th>
                         <th>删除</th>
@@ -107,6 +108,7 @@
                         <td>${reader.name}</td>
                         <td>${reader.password}</td>
                         <td>${reader.tel}</td>
+                        <td>${reader.ifViolate==0?'正常':'违规'}</td>
                         <td><a href="getReaderByUsername?pageNum=${info.pageNum}&username=${reader.username}">修改</a>
                         </td>
                         <td><a href="deleteReaderByUsername?pageNum=${info.pageNum}&username=${reader.username}">删除</a>

@@ -31,7 +31,7 @@
 
     <!--    public List<Book> fuzzyQueryAllBooks(String name);-->
     <select id="fuzzyQueryAllBooks" resultMap="bookMap">
-        select id,bookName,bookEncrypt,count(*) total,sum(case when stock = 1 then 1 else 0 end) stock,pubName,author,typeName from tb_book as b
+        select id,bookName,bookEncrypt,count(*) total,sum(case when stock = 1 then 1 else 0 end) stock,pubName,author,typeName,ifBorrow from tb_book as b
         <where>
             <if test="bookEncrypt!=null and !bookEncrypt.equals(' ')">
                 b.bookEncrypt like CONCAT('%',#{bookEncrypt},'%')

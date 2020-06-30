@@ -81,7 +81,6 @@
                 $(".wrap .down .right").fadeOut("fast");
                 $(".wrap .down .right").fadeIn("fast")
             })
-
             $(".part1-btn").click(function () {
                 if ($(".select").val() == 0) {
                     location.href = "fuzzyQueryAllBooks?path=searchPage&bookName=" + $(".part1-ss").val();

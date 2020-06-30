@@ -2,9 +2,16 @@
 *{    margin: 0 ;padding: 0}
 input{
     font-size: 16px;
-}
-input{
     outline: none;
+}
+table tr:nth-child(2n){
+    background: #f6f8fa;
+}
+.loginTable table tr{
+    background: none;
+}
+.wrap .down .left table tr{
+    background: none;
 }
 a{
     outline: none;

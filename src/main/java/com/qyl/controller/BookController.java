@@ -42,8 +42,8 @@ public class BookController {
     @RequestMapping("/insertBooksBatch")
     public String insertBooksBatch() {
         ArrayList<Book> books = new ArrayList<Book>();
-        Book book = new Book();
         for (int i = 0; i < 100; i++) {
+            Book book = new Book();
             book.setId(i);
             book.setAuthor("邱依良");
             book.setBookEncrypt(UUID.randomUUID().toString().substring(0, 5));
@@ -51,6 +51,7 @@ public class BookController {
             book.setPubName("南京晓庄");
             book.setStock(1);
             book.setTypeName("自然科学");
+            book.setIfBorrow(0);
             books.add(book);
         }
         bookService.insertBooksBatch(books);
@@ -147,6 +148,7 @@ public class BookController {
 
     @RequestMapping("/returnBook")
     public String returnBook(Book book,HttpSession session){
+        System.out.println(book.toString()+"\n\n\n");
         bookService.updateBook(book);
         String username = session.getAttribute("username").toString();
         Date date = new Date();

@@ -27,7 +27,7 @@
         })
 
         function loadSpan() {
-            $("#delViolate").css("display","none");
+            $("#delViolate").css("display", "none");
             if (${authority==1}) {
                 $("#updateManager").css("display", "none");
                 $("#showManager").css("display", "none");
@@ -106,7 +106,7 @@
                 <dd>作　者:<input type="text" name="author" id="author" value="${book.author}"/></dd>
                 <dd>书　码:<input type="text" name="bookEncrypt" id="bookEncrypt" value="${book.bookEncrypt}"/></dd>
                 <dd> 出版商:<input type="text" name="pubName" id="pubName" value="${book.pubName}"/></dd>
-                <dd>书　 类:
+                <dd>书　类:
                     <select name="typeName">
                         <c:forEach items="${bookTypes}" var="bookType">
                             <c:if test="${book.typeName==bookType.typeName}">
@@ -118,6 +118,7 @@
                         </c:forEach>
                     </select>
                 </dd>
+                <input type="text" name="ifBorrow" id="ifBorrow" value="${book.ifBorrow}" hidden>
                 <input type="submit" value="提交" class="submit" style="margin-left: 70px;">
             </dl>
         </form>

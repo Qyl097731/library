@@ -110,6 +110,7 @@
             <input type="hidden" name="bookEncrypt" id="bookEncrypt" value="${book.bookEncrypt}"/>
             <input type="hidden" name="pubName" id="pubName" value="${book.pubName}"/>
             <input type="hidden" name="typeName" id="typeName" value="${book.typeName}">
+            <input type="hidden" name="ifBorrow" id="ifBorrow" value="1">
             <input type="submit" value="提交" class="submit" style="margin-left: 525px;height: 30px;">
         </form>
     </div>

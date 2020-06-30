@@ -70,20 +70,20 @@
                 var stock = $("#stock").val();
                 var pubName = $("#pubName").val();
                 var typeName = $("#typeName").val();
+                var ifBorrow = $("#ifBorrow").val();
+                var jsonData={ "id": id,
+                    "bookName": bookName,
+                    "author": author,
+                    "stock": stock,
+                    "bookEncrypt": bookEncrypt,
+                    "pubName": pubName,
+                    "typeName": typeName,
+                    "ifBorrow":ifBorrow}
                 $.ajax({
                     url: "returnBook",
-                    data: {
-                        "id": id,
-                        "bookName": bookName,
-                        "author": author,
-                        "stock": stock,
-                        "bookEncrypt": bookEncrypt,
-                        "pubName": pubName,
-                        "typeName": typeName
-                    },
+                    data: jsonData,
                     type: "POST",
                     success: function () {
-
                         $(".body .content").css("display", "none");
                         $(".line").hide();
                         alert("还书成功");
@@ -179,8 +179,8 @@
                         <input type="hidden" name="pubName" id="pubName" value=""/>
                         <input type="hidden" name="stock" id="stock" value=""/>
                         <input type="hidden" name="typeName" id="typeName" value=""/>
+                        <input type="hidden" name="ifBorrow" id="ifBorrow" value="0">
                         <input type="submit" value="确定" class="submit"style="margin-left: 525px;height: 30px;background:darkorange">
-
                     </div>
                 </form>
         </div>
